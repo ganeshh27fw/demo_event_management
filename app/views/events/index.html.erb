@@ -1,0 +1,23 @@
+
+
+<h2>Events</h2>
+
+
+
+<%= form_with url: events_path, method: :get, local: true, id: 'search_form' do %>
+  <div class="field">
+    <%= label_tag :query, "Search Events" %>
+    <%= text_field_tag :query, params[:query], id: 'search_box' %>
+  </div>
+<% end %>
+
+<div id="search_results">
+  <%= render partial: 'events_list' %>
+</div>
+
+<div class='button-6'>
+
+<% if can? :create, Event %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
+</div>

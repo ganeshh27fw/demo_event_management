@@ -1,0 +1,30 @@
+<h2>Your Booking History</h2>
+
+<% if @bookings.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Ticket Type</th>
+        <th>Quantity</th>
+        <th>Total Cost</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.event.name %></td>
+          <td><%= booking.ticket_type.name %></td>
+          <td><%= booking.quantity %></td>
+          <td><%= number_to_currency(booking.ticket_type.price * booking.quantity) %></td>
+          <td>
+            <%= button_to 'Cancel Booking', cancel_booking_path(booking), method: :delete,  form: {data: {'turbo_confirm': 'Are you sure?'}}  %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no bookings.</p>
+<% end %>

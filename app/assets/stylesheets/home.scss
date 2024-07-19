@@ -1,0 +1,109 @@
+.events-container {
+	display:flex;
+	gap:30px;
+  flex-flow: wrap;
+}
+
+.events-page-container {
+	display:flex;
+	flex-direction:column;
+	gap:20px;
+}
+
+.home-button {
+	font-size:30px;
+	font-weight:bold;
+	font-color:white
+}
+form {
+  display:flex;
+
+    gap: 5px;
+    flex-direction: row;
+
+}
+
+form .field {
+  margin: 0 !important
+}
+
+form input {
+  height: 55px;
+}
+
+.event-img-box {
+	background-image: linear-gradient(120deg, rgb(191 ,75 ,73), rgba(37, 117, 252, 1));
+  height:200px;
+  width:300px;
+ 
+  border-radius: 5px 5px 0 0;
+  color:white !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:5px;
+    
+}
+.event-box a {
+	color:black;
+}
+
+.event-full-box {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius:5px;
+}
+.event-full-box .event-box-details {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  padding:10px;
+  background:#d9ccf0;
+  border-radius:0 0 5px 5px
+  
+
+}
+nav-right form.button_to {
+  display: inline;
+    background: unset !important;
+    color: #ffffff !important;
+}
+
+.event-img {
+	
+	 height: 100%;
+    width: 100%;
+}
+
+.event-img img {
+	height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  width:25%;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+
+tr:hover {
+  background-color: #720455;
+}

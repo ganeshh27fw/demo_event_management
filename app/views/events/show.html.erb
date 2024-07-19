@@ -1,0 +1,107 @@
+<div class='container event-details-page'>
+  <div class='event-dpage-left'>
+   
+    
+    <div class='event-dpage-box event-dpage-item event-item'>
+<h2><%= @event.name.capitalize %></h2>
+<div class='img-box'>
+
+<% if @event.image.attached? %>
+  <%= image_tag @event.image %>
+<% else %>
+<%= image_tag(root_url + "default2.jpg", :alt => "event") %>
+<% end %>
+</div>
+<div class='event-dpage-details'>
+  <div class='mt-2 mb-0 pb-0'
+<>About :</span>
+</div>
+<div class='ml-3 pl-3'>
+<div class='mt-1 pt-0 pb-3'><%= @event.description %></div>
+</div>
+<p>Date: <strong> <%= @event.date.strftime("%B %d, %Y") %></p></strong>
+<p>City: <strong> <%= @event.city %></p></strong>
+<p>Producer: <strong> <%= @event.producer %></p></strong>
+<p>Artists: <strong> <%= @event.artists %></p></strong> 
+
+</div>
+<% if can? :delete, @event %>
+<div class="mb-3 mt-3 d-flex justify-content-center">
+
+  <%= button_to 'Delete Event', event_path(@event), {class:'delete-event-button', method: :delete, confirm: 'are u sure?'} %>
+
+<% end %>
+</div>
+</div>
+</div>
+ <div class='event-dpage-right'>
+
+<div class='event-dpage-tkt-box event-dpage-item'>
+<h3>Ticket Types</h3>
+<table>
+        
+<% @event.ticket_types.each do |ticket_type| %>
+
+  
+    <tr>
+   
+      
+  <td> <div class='col'> <p><strong><%= ticket_type.name %></strong>: $<%= ticket_type.price %></p></div> </td> 
+   <td> <div class='col'>  <p>Total : <%= ticket_type.total_quantity %></p></div> </td> 
+ <td>  <div class='col'>  <p>Available : <%= ticket_type.available_quantity %></p></div></td>
+    <% if can? :destroy, ticket_type %>
+  <td> <div class='col'>  
+      <%= button_to 'Delete', event_ticket_type_path(@event, ticket_type), {class:'default-delete-button', method: :delete, confirm: 'are u sure?'} %>
+   </div> </td>
+  </tr>
+
+  
+    <% end %>
+   
+ 
+
+
+<% end %>
+   </table>
+<% if can? :create, TicketType %>
+<% if @event.date >= Date.today %>
+<div class='button-6'>
+
+
+  <%= link_to 'Add Ticket Type', new_event_ticket_type_path(@event) %>
+  <% else %>
+  <button type="button"class="btn button-6" disabled>Add Ticket Type</button>
+  <% end %>
+</div>
+<% end %>
+
+
+<% if can? :create, Booking %>
+<div class='event-dpage-booking-box event-dpage-item'>
+
+<h3>Book Tickets</h3>
+  <%= form_with class:"ticket-type-form" , model: [@event, Booking.new], local: true do |form| %>
+    <div class="field">
+      <%= form.label :ticket_type_id, 'Select Ticket Type' %>
+      <%= form.collection_select :ticket_type_id, @event.ticket_types, :id, :name,class:"form-select form-select-lg"  %>
+    </div>
+    <div class="field">
+      <%= form.label :quantity, 'Number of Tickets' %>
+      <%= form.number_field :quantity, min: 1 %>
+    </div>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <% if @event.ticket_types %>
+    <div class="actions" >
+      <% if @event.date >= Date.today %>
+      <%= form.submit 'Book Ticket' , class: 'button-6' %>
+       <% else %>
+       <button type="button" class=" btn button-6" disabled>Book Ticket</button>
+       <% end %>
+    
+    </div>
+   <% end %>
+   <% end %>
+<% end %>
+</div>
+</div>
+</div>

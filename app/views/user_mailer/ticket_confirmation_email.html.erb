@@ -1,0 +1,13 @@
+<p>Hello <%= @user.firstname %>,</p>
+
+<p>Thank you for your booking. Here are your ticket details:</p>
+
+<p><b>Event</b>: <%= @booking.event.name %><br>
+<b>Ticket Type:</b> <%= @booking.ticket_type.name %><br>
+<b>Quantity</b>: <%= @booking.quantity %><br>
+<b>Date</b>:<%= @booking.event.date %><br>
+<b>City</b>:<%= @booking.event.city %>
+</p>
+
+
+<p>Best regards,<br>Your App Team</p>

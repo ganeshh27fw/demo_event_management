@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  date: 2024-07-11 12:15:11
+  city: MyString
+  producer: MyString
+
+two:
+  name: MyString
+  description: MyText
+  date: 2024-07-11 12:15:11
+  city: MyString
+  producer: MyString

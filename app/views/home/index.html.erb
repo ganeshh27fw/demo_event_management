@@ -1,0 +1,85 @@
+
+<html>
+<head>
+	 <%= stylesheet_link_tag    'home', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+	
+
+<div class='events-page-container'>
+
+  <%= form_with  method: :get, local: true do %>
+  <div class="field">
+    
+    <%= text_field_tag :query, params[:query] ,id: 'search-input', placeholder: "Search Events"%>
+  </div>
+  <%= submit_tag "Search", class:'button-6', name: nil %>
+<% end %>
+
+
+
+
+<h1>Upcoming Events</h1>
+
+  <div class="events-container">
+    <% if @events.any? %>
+    <% @events.each do |event| %>
+    <div class='event-full-box'>
+      <div class='event-img-box'>
+      
+      	 <div class='event-img' >
+      	 		<% if event.image.attached? %><%= image_tag event.image %>
+      	 		<% end %></div>
+    
+      </div>
+      <div class='event-box-details'>
+          <h4><%= link_to event.name.capitalize, event_path(event) %></h4>
+        <div class='event-time'> <%= event.date.strftime("%B %d, %Y") %></div>
+      </div>
+    </div>
+ 
+    <% end %>
+       <% else %>
+    <p>No Upcoming Events. </p>
+     <% end %>
+  </div>
+
+
+<h1>Past Events</h1>
+
+  <div class="events-container">
+     <% if @comp_events.any? %>
+    <% @comp_events.each do |event| %>
+        <div class='event-full-box'>
+      <div class='event-img-box'>
+      
+         <div class='event-img' >
+            <% if event.image.attached? %><%= image_tag event.image %>
+            <% end %></div>
+    
+      </div>
+      <div class='event-box-details'>
+          <h4><%= link_to event.name.capitalize, event_path(event) %></h4>
+        <div class='event-time'>Ended: <%= event.date.strftime("%B %d, %Y") %></div>
+      </div>
+    </div>
+    <% end %>
+      <% else %>
+    <p>No Events found. </p>
+     <% end %>
+  </div>
+
+
+<% if can? :create, Event %>
+<div class='button-6'>
+  <%= link_to 'Create New Event', new_event_path %>
+  </div>
+<% end %>
+</div>
+
+
+</body>
+</html>
+
+
+

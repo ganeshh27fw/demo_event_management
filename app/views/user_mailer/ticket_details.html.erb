@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ticket Details</title>
+    <style>
+      body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      .container { margin: 20px; }
+      .header { text-align: center; }
+      .details { margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Ticket Details</h1>
+      </div>
+      <div class="details">
+        <p><strong>Event:</strong> <%= @booking.event.name %></p>
+        <p><strong>Date:</strong> <%= @booking.event.date %></p>
+         <p><strong>City:</strong> <%= @booking.event.city %></p>
+        <p><strong>Ticket Type:</strong> <%= @booking.ticket_type.name %></p>
+        <p><strong>Quantity:</strong> <%= @booking.quantity %></p>
+        <p><strong>Booked by:</strong> <%= @booking.user.full_name %></p>
+      </div>
+    </div>
+  </body>
+</html>
+

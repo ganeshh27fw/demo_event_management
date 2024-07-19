@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TicketBookingApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- MDBootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" />
+ 
+  </head>
+
+  <body>
+    <nav class='gradient-custom h-100'>
+      <div class=nav-left>
+      <div class='home-button'>
+    <%= link_to 'Home', root_path %>
+
+  </div>
+   <% if user_signed_in? %>
+  <%= link_to 'My Booking History', booking_history_path %> 
+   <%= link_to 'Profile', edit_user_registration_path %> 
+    <% end %>
+   </div>
+
+
+
+   <% if user_signed_in? %>
+
+ <div class='nav-right'> <%= button_to 'Logout', destroy_user_session_path,{class:'logout', method: :delete, confirm: 'are u sure?'}  %>
+ 
+   </div>
+ 
+<% else %>
+<div class='nav-right'> 
+
+ <%= link_to 'Login / Signin', new_user_session_path %>
+</div>
+<% end %>
+</nav>
+
+   <div class="container">
+      <% if notice %>
+      <div class='alert home-alert alert-success' role="alert">
+
+        <%= notice %>
+      </div>
+      <% end %>
+      <% if alert %>
+        <div class='alert alert-danger' role="alert"><%= alert %></div>
+      <% end %>
+
+     <%= yield %> 
+    </div>
+  <!-- MDBootstrap JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
+ 
+    
+  </body>
+</html>

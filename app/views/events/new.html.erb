@@ -1,0 +1,73 @@
+
+<section class="vh-100 ">
+
+  <div class="container py-5 h-100">
+     
+    <div class="row d-flex justify-content-center align-items-top h-100">
+      <div class="col-12 col-md-12 col-lg-8 col-xl-6">
+        <div class="card gradient-custom  text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <div class='mt-5 mb-5'>
+<h2>Create New Event</h2>
+</div>
+
+<%= form_with model: @event, local: true do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-tt-field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :date %>
+    <div class='input-tt-select'>
+    <%= form.datetime_select :date %>
+  </div>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :producer %>
+    <%= form.text_field :producer %>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :artists %>
+    <%= form.text_area :artists %>
+  </div>
+
+  <div class="input-tt-field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>

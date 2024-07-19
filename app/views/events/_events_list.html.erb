@@ -1,0 +1,19 @@
+<% if @events.any? %>
+  <ul>
+    <% @events.each do |event| %>
+      <li>
+        <h2><%= link_to event.name, event_path(event) %></h2>
+        <p><%= event.description %></p>
+        <p><%= event.artists %></p>
+        <p><%= event.date.strftime("%B %d, %Y") %></p>
+        <p><%= event.city %></p>
+        <p><%= event.producer %></p>
+        <% if event.image.attached? %>
+          <%= image_tag event.image, style: "max-width: 200px;" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No events found</p>
+<% end %>
